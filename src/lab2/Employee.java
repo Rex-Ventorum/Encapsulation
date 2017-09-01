@@ -1,6 +1,7 @@
 package lab2;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -89,30 +90,17 @@ public class Employee {
     //----------------------//
     //--- GETTER METHODS ---//
     //----------------------//
-    public String getFirstName() {
-        return firstName;
-    }
-    
-    public String getLastName() {
-        return lastName;
-    }
-    
-    public String getSsn() {
-        return ssn;
-    }
+    public String getFirstName() {return firstName;}
+    public String getLastName() { return lastName; }
+    public String getSsn() { return ssn;}
        
     public boolean isMetWithHr() { return metWithHr;}
     public boolean isMetDeptStaff() {return metDeptStaff;}
     public boolean isReviewedDeptPolicies() {return reviewedDeptPolicies;}
     public boolean isMovedIn() {return movedIn;}
     
-    public Date getOrientationDate() {
-        return orientationDate;
-    }
-    
-    public String getCubeId() {
-        return cubeId;
-    }
+    public Date getOrientationDate() {return orientationDate;}
+    public String getCubeId() { return cubeId;}
 
     //----------------------//
     //--- SETTER METHODS ---//
@@ -122,12 +110,20 @@ public class Employee {
     // allowed through validation.
     
     public void setFirstName(String firstName) {
-       this.firstName = firstName;
+        if(stringIsNullOrEmpty(firstName)) 
+            throw new IllegalArgumentException("Argument may not be null or empty string");
+        this.firstName = firstName;
     }
+
     public void setLastName(String lastName) {
-       this.lastName = lastName;
+        if(stringIsNullOrEmpty(lastName)) 
+            throw new IllegalArgumentException("Argument may not be null or empty string");
+        this.lastName = lastName;
     }
+
     public void setSsn(String ssn) {
+        if(stringIsValidSsn(ssn)) 
+            throw new IllegalArgumentException("Argument must be non null and \"000-00-0000\" format");
         this.ssn = ssn;
     }
     
@@ -137,11 +133,25 @@ public class Employee {
     public void setReviewedDeptPolicies(boolean reviewedDeptPolicies) {this.reviewedDeptPolicies = reviewedDeptPolicies;}
     public void setMovedIn(boolean movedIn) {this.movedIn = movedIn;}
     
+    //Can add a Cube ID Regex check if office has procedures for this
     public void setCubeId(String cubeId) {
         this.cubeId = cubeId;
     }
 
     public void setOrientationDate(Date orientationDate) {
+        //Ensure year is reasonable
+        if(orientationDate != null){        
+            Calendar cal = Calendar.getInstance();
+            int currentYear = cal.get(Calendar.YEAR);
+            
+            cal.setTime(orientationDate);
+            int orientationYear = cal.get(Calendar.YEAR);
+            
+            int companyFoundation = 1970;            
+            if(orientationYear < companyFoundation || orientationYear > currentYear + 20)
+                 throw new IllegalArgumentException("Date has an unreasonable year");
+            
+        }//end of non-null Year validation
         this.orientationDate = orientationDate;
     }
     
