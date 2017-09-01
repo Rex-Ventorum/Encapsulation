@@ -12,16 +12,37 @@ import java.util.Date;
  * @version     1.02
  */
 public class Employee {
-    String firstName;
-    String lastName;
-    public String ssn;
-    boolean metWithHr;
-    boolean metDeptStaff;
-    boolean reviewedDeptPolicies;
-    boolean movedIn;
-    String cubeId;
-    Date orientationDate;
+    
+    //Reqired Objects
+    private String firstName;
+    private String lastName;
+    private String ssn;
+    
+    //Optinal Objects ("Can Be null)
+    private String cubeId;
+    private Date orientationDate;
+    
+    //Flags 
+    private boolean metWithHr;
+    private boolean metDeptStaff;
+    private boolean reviewedDeptPolicies;
+    private boolean movedIn;
 
+    
+    public Employee(String firstName, String lastName, String ssn){
+        if(stringIsNullOrEmpty(firstName) || stringIsNullOrEmpty(lastName) || stringIsNullOrEmpty(ssn))
+            throw new IllegalArgumentException("Argument may not be null or empty string");
+        this.firstName = firstName; this.lastName = lastName; this.ssn = ssn;
+    }
 
+    
+    
+    
+    //---------------------//
+    //--- OTHER METHODS ---//
+    //---------------------//
+    private boolean stringIsNullOrEmpty(String testMe){
+        return testMe == null || testMe.equals("");
+    }
 
 }
