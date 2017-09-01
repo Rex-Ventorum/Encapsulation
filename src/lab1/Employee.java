@@ -28,19 +28,36 @@ public class Employee {
     private boolean reviewedDeptPolicies;
     private boolean movedIn;
 
+    //---------------------//
+    //---- CONSTRUCTOR ----//
+    //---------------------//
     
     public Employee(String firstName, String lastName, String ssn){
         if(stringIsNullOrEmpty(firstName) || stringIsNullOrEmpty(lastName) || stringIsNullOrEmpty(ssn))
             throw new IllegalArgumentException("Argument may not be null or empty string");
         this.firstName = firstName; this.lastName = lastName; this.ssn = ssn;
     }
+    
+    //----------------------//
+    //--- GETTER METHODS ---//
+    //----------------------//
+    
+    public String getFirstName() {return firstName;}
+    public String getLastName() {return lastName;}
+    public String getSsn() { return ssn; }
+   
+    public String getCubeId() {return cubeId; }
+    public Date getOrientationDate() {return orientationDate; }
 
+    public boolean hasMetWithHr() { return metWithHr; }
+    public boolean hasMetDeptStaff() { return metDeptStaff;}
+    public boolean hasReviewedDeptPolicies() {return reviewedDeptPolicies; }
+    public boolean hasMovedIn() { return movedIn; }
     
     
-    
-    //---------------------//
-    //--- OTHER METHODS ---//
-    //---------------------//
+    //----------------------//
+    //---- OTHER METHODS ---//
+    //----------------------//
     private boolean stringIsNullOrEmpty(String testMe){
         return testMe == null || testMe.equals("");
     }
