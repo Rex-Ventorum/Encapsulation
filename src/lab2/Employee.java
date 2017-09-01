@@ -22,6 +22,9 @@ import java.util.Date;
  */
 public class Employee {
    
+    //Constant Objects 
+    private static final DateUtilities DATE_FORMATER = new DateUtilities();
+    
     private String firstName;
     private String lastName;
     private String ssn;
@@ -47,32 +50,26 @@ public class Employee {
     // Assume this must be performed first, and assume that an employee
     // would only do this once, upon being hired.
     public void meetWithHrForBenefitAndSalryInfo() {
-        metWithHr = true;
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        String fmtDate = sdf.format(orientationDate);        
+        metWithHr = true;  
         System.out.println(firstName + " " + lastName + " met with Hr on "
-            + fmtDate);
+            + DATE_FORMATER.getFormattedDate(orientationDate));
     }
 
     // Assume this must be performed first, and assume that an employee
     // would only do this once, upon being hired.:
     public void meetDepartmentStaff() {
         metDeptStaff = true;
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        String fmtDate = sdf.format(orientationDate);        
-        System.out.println(firstName + " " + lastName + " met with Dept. Staff on "
-            + fmtDate);
+        System.out.println(getFullName() + " met with Dept. Staff on "
+            + DATE_FORMATER.getFormattedDate(orientationDate));
     }
 
     // Assume this must be performed third. And assume that because department
     // policies may change that this method may need to be called 
     // independently from other classes.
     public void reviewDeptPolicies() {
-        reviewedDeptPolicies = true;
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        String fmtDate = sdf.format(orientationDate);        
-        System.out.println(firstName + " " + lastName + " reviewed Dept policies on "
-            + fmtDate);
+        reviewedDeptPolicies = true;       
+        System.out.println(getFullName() + " reviewed Dept policies on "
+            + DATE_FORMATER.getFormattedDate(orientationDate));
     }
 
     // Assume this must be performed 4th. And assume that because employees
@@ -80,11 +77,9 @@ public class Employee {
     // independently from other classes.
     public void moveIntoCubicle(String cubeId) {
         this.cubeId = cubeId;
-        this.movedIn = true;
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        String fmtDate = sdf.format(orientationDate);        
-        System.out.println(firstName + " " + lastName + " moved into cubicle "
-                + cubeId + " on " + fmtDate);
+        this.movedIn = true;     
+        System.out.println(getFullName() + " moved into cubicle "
+                + cubeId + " on " + DATE_FORMATER.getFormattedDate(orientationDate));
     }
 
     //----------------------//
@@ -92,6 +87,7 @@ public class Employee {
     //----------------------//
     public String getFirstName() {return firstName;}
     public String getLastName() { return lastName; }
+    public String getFullName(){return firstName + " " + lastName;}
     public String getSsn() { return ssn;}
        
     public boolean isMetWithHr() { return metWithHr;}
