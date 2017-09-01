@@ -18,7 +18,7 @@ public class Employee {
     private String lastName;
     private String ssn;
     
-    //Optinal Objects ("Can Be null)
+    //Optinal Objects (Can Be null)
     private String cubeId;
     private Date orientationDate;
     
@@ -47,13 +47,42 @@ public class Employee {
     public String getSsn() { return ssn; }
    
     public String getCubeId() {return cubeId; }
-    public Date getOrientationDate() {return orientationDate; }
+    public Date getOrientationDate() {return orientationDate;}
 
     public boolean hasMetWithHr() { return metWithHr; }
     public boolean hasMetDeptStaff() { return metDeptStaff;}
     public boolean hasReviewedDeptPolicies() {return reviewedDeptPolicies; }
     public boolean hasMovedIn() { return movedIn; }
+
+    //----------------------//
+    //--- SETTER METHODS ---//
+    //----------------------//
     
+    public void setFirstName(String firstName) {
+        if(stringIsNullOrEmpty(firstName)) 
+            throw new IllegalArgumentException("Argument may not be null or empty string");
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        if(stringIsNullOrEmpty(lastName)) 
+            throw new IllegalArgumentException("Argument may not be null or empty string");
+        this.lastName = lastName;
+    }
+
+    public void setSsn(String ssn) {
+        if(stringIsNullOrEmpty(ssn)) 
+            throw new IllegalArgumentException("Argument may not be null or empty string");
+        this.ssn = ssn;
+    }
+    
+    public void setCubeId(String cubeId) { this.cubeId = cubeId;}
+    public void setOrientationDate(Date orientationDate) {this.orientationDate = orientationDate;}
+
+    public void setMetWithHr(boolean metWithHr) {this.metWithHr = metWithHr;}
+    public void setMetDeptStaff(boolean metDeptStaff) { this.metDeptStaff = metDeptStaff;}
+    public void setReviewedDeptPolicies(boolean reviewedDeptPolicies) {this.reviewedDeptPolicies = reviewedDeptPolicies;}
+    public void setMovedIn(boolean movedIn) { this.movedIn = movedIn;}
     
     //----------------------//
     //---- OTHER METHODS ---//
