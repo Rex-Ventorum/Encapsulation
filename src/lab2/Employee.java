@@ -47,6 +47,15 @@ public class Employee {
         this.ssn = ssn;
     }
 
+    
+    public void completeEmployeeOrientationProcedures(Date datePreformed, String cubeId){
+        setOrientationDate(datePreformed);
+        meetWithHrForBenefitAndSalryInfo();
+        meetDepartmentStaff();
+        reviewDeptPolicies();
+        moveIntoCubicle(cubeId, datePreformed);
+    }
+    
     // Assume this must be performed first, and assume that an employee
     // would only do this once, upon being hired.
     private void meetWithHrForBenefitAndSalryInfo() {
@@ -75,11 +84,11 @@ public class Employee {
     // Assume this must be performed 4th. And assume that because employees
     // sometimes change office locations that this method may need to be called 
     // independently from other classes.
-    public void moveIntoCubicle(String cubeId) {
-        this.cubeId = cubeId;
-        this.movedIn = true;     
+    public void moveIntoCubicle(String cubeId, Date moveInDate) {
+        setCubeId(cubeId);
+        movedIn = true;     
         System.out.println(getFullName() + " moved into cubicle "
-                + cubeId + " on " + DATE_FORMATER.getFormattedDate(orientationDate));
+                + cubeId + " on " + DATE_FORMATER.getFormattedDate(moveInDate));
     }
 
     //----------------------//
@@ -130,13 +139,14 @@ public class Employee {
     public void setMovedIn(boolean movedIn) {this.movedIn = movedIn;}
     
     //Can add a Cube ID Regex check if office has procedures for this
-    public void setCubeId(String cubeId) {
+    private void setCubeId(String cubeId) {
         if(!stringIsValidCubeID(cubeId)) 
             throw new IllegalArgumentException("Cube Id is Invalid");
         this.cubeId = cubeId;
     }
 
-    public void setOrientationDate(Date orientationDate) {
+    
+    private void setOrientationDate(Date orientationDate) {
         //Ensure year is reasonable
         if(orientationDate != null){        
             Calendar cal = Calendar.getInstance();
