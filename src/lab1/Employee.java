@@ -73,7 +73,7 @@ public class Employee {
     }
 
     public void setSsn(String ssn) {
-        if(stringIsValidSsn(ssn)) 
+        if(!stringIsValidSsn(ssn)) 
             throw new IllegalArgumentException("Argument must be non null and \"000-00-0000\" format");
         this.ssn = ssn;
     }

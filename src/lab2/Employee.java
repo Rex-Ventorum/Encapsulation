@@ -49,15 +49,15 @@ public class Employee {
 
     // Assume this must be performed first, and assume that an employee
     // would only do this once, upon being hired.
-    public void meetWithHrForBenefitAndSalryInfo() {
+    private void meetWithHrForBenefitAndSalryInfo() {
         metWithHr = true;  
-        System.out.println(firstName + " " + lastName + " met with Hr on "
+        System.out.println(getFullName() + " met with Hr on "
             + DATE_FORMATER.getFormattedDate(orientationDate));
     }
 
-    // Assume this must be performed first, and assume that an employee
+    // Assume this must be performed "Second", and assume that an employee
     // would only do this once, upon being hired.:
-    public void meetDepartmentStaff() {
+    private void meetDepartmentStaff() {
         metDeptStaff = true;
         System.out.println(getFullName() + " met with Dept. Staff on "
             + DATE_FORMATER.getFormattedDate(orientationDate));
@@ -131,6 +131,8 @@ public class Employee {
     
     //Can add a Cube ID Regex check if office has procedures for this
     public void setCubeId(String cubeId) {
+        if(!stringIsValidCubeID(cubeId)) 
+            throw new IllegalArgumentException("Cube Id is Invalid");
         this.cubeId = cubeId;
     }
 
@@ -162,5 +164,10 @@ public class Employee {
     private boolean stringIsValidSsn(String testSsn){
         return !stringIsNullOrEmpty(testSsn) &&
                testSsn.matches("\\d{3}-\\d{2}-\\d{4}");
+    }
+    
+    private boolean stringIsValidCubeID(String cubeId){
+        //TODO: DO SOMETHING
+        return true;
     }
 }
