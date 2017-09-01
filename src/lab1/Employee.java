@@ -1,5 +1,6 @@
 package lab1;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -76,8 +77,25 @@ public class Employee {
         this.ssn = ssn;
     }
     
+    //Can add a Cube ID Regex check if office has procedures for this
     public void setCubeId(String cubeId) { this.cubeId = cubeId;}
-    public void setOrientationDate(Date orientationDate) {this.orientationDate = orientationDate;}
+    
+    public void setOrientationDate(Date orientationDate) {
+        //Ensure year is reasonable
+        if(orientationDate != null){        
+            Calendar cal = Calendar.getInstance();
+            int currentYear = cal.get(Calendar.YEAR);
+            
+            cal.setTime(orientationDate);
+            int orientationYear = cal.get(Calendar.YEAR);
+            
+            int companyFoundation = 1970;            
+            if(orientationYear < companyFoundation || orientationYear > currentYear + 20)
+                 throw new IllegalArgumentException("Date has an unreasonable year");
+            
+        }//end of non-null Year validation
+        this.orientationDate = orientationDate;
+    }
 
     public void setMetWithHr(boolean metWithHr) {this.metWithHr = metWithHr;}
     public void setMetDeptStaff(boolean metDeptStaff) { this.metDeptStaff = metDeptStaff;}
