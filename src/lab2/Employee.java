@@ -20,6 +20,7 @@ import java.util.Date;
  * @version     1.02
  */
 public class Employee {
+   
     private String firstName;
     private String lastName;
     private String ssn;
@@ -30,7 +31,13 @@ public class Employee {
     private String cubeId;
     private Date orientationDate;
 
+    //---------------------//
+    //---- CONSTRUCTOR ----//
+    //---------------------//
+    
     public Employee(String firstName, String lastName, String ssn) {
+        if(stringIsNullOrEmpty(firstName) || stringIsNullOrEmpty(lastName) || stringIsValidSsn(ssn))
+            throw new IllegalArgumentException("Argument may not be null or empty. ssn must be \"000-00-0000\"");
         this.firstName = firstName;
         this.lastName = lastName;
         this.ssn = ssn;
@@ -79,79 +86,75 @@ public class Employee {
                 + cubeId + " on " + fmtDate);
     }
 
+    //----------------------//
+    //--- GETTER METHODS ---//
+    //----------------------//
     public String getFirstName() {
         return firstName;
     }
+    
+    public String getLastName() {
+        return lastName;
+    }
+    
+    public String getSsn() {
+        return ssn;
+    }
+       
+    public boolean isMetWithHr() { return metWithHr;}
+    public boolean isMetDeptStaff() {return metDeptStaff;}
+    public boolean isReviewedDeptPolicies() {return reviewedDeptPolicies;}
+    public boolean isMovedIn() {return movedIn;}
+    
+    public Date getOrientationDate() {
+        return orientationDate;
+    }
+    
+    public String getCubeId() {
+        return cubeId;
+    }
 
+    //----------------------//
+    //--- SETTER METHODS ---//
+    //----------------------//
+    
     // setter methods give the developer the power to control what data is
     // allowed through validation.
     
     public void setFirstName(String firstName) {
        this.firstName = firstName;
     }
-
-    public String getLastName() {
-        return lastName;
-    }
-
     public void setLastName(String lastName) {
        this.lastName = lastName;
     }
-
-    public String getSsn() {
-        return ssn;
-    }
-
     public void setSsn(String ssn) {
         this.ssn = ssn;
     }
-
-    public boolean isMetWithHr() {
-        return metWithHr;
-    }
-
+    
     // boolean parameters need no validation
-    public void setMetWithHr(boolean metWithHr) {
-        this.metWithHr = metWithHr;
-    }
-
-    public boolean isMetDeptStaff() {
-        return metDeptStaff;
-    }
-
-    public void setMetDeptStaff(boolean metDeptStaff) {
-        this.metDeptStaff = metDeptStaff;
-    }
-
-    public boolean isReviewedDeptPolicies() {
-        return reviewedDeptPolicies;
-    }
-
-    public void setReviewedDeptPolicies(boolean reviewedDeptPolicies) {
-        this.reviewedDeptPolicies = reviewedDeptPolicies;
-    }
-
-    public boolean isMovedIn() {
-        return movedIn;
-    }
-
-    public void setMovedIn(boolean movedIn) {
-        this.movedIn = movedIn;
-    }
-
-    public String getCubeId() {
-        return cubeId;
-    }
-
+    public void setMetWithHr(boolean metWithHr) {this.metWithHr = metWithHr;}
+    public void setMetDeptStaff(boolean metDeptStaff) {this.metDeptStaff = metDeptStaff;}
+    public void setReviewedDeptPolicies(boolean reviewedDeptPolicies) {this.reviewedDeptPolicies = reviewedDeptPolicies;}
+    public void setMovedIn(boolean movedIn) {this.movedIn = movedIn;}
     
     public void setCubeId(String cubeId) {
         this.cubeId = cubeId;
     }
 
-    public Date getOrientationDate() {
-        return orientationDate;
-    }
-
     public void setOrientationDate(Date orientationDate) {
         this.orientationDate = orientationDate;
-    }}
+    }
+    
+    //----------------------//
+    //- VALIDATION HELPERS -//
+    //----------------------//
+    
+    private boolean stringIsNullOrEmpty(String testMe){
+        return testMe == null || testMe.equals("");
+    }
+
+    private boolean stringIsValidSsn(String testSsn){
+        return !stringIsNullOrEmpty(testSsn) &&
+               testSsn.matches("\\d{3}-\\d{2}-\\d{4}");
+    }
+}
