@@ -33,7 +33,7 @@ public class Employee {
     //---------------------//
     
     public Employee(String firstName, String lastName, String ssn){
-        if(stringIsNullOrEmpty(firstName) || stringIsNullOrEmpty(lastName) || stringIsNullOrEmpty(ssn))
+        if(stringIsNullOrEmpty(firstName) || stringIsNullOrEmpty(lastName) || stringIsValidSsn(ssn))
             throw new IllegalArgumentException("Argument may not be null or empty string");
         this.firstName = firstName; this.lastName = lastName; this.ssn = ssn;
     }
@@ -71,7 +71,7 @@ public class Employee {
     }
 
     public void setSsn(String ssn) {
-        if(stringIsNullOrEmpty(ssn)) 
+        if(stringIsValidSsn(ssn)) 
             throw new IllegalArgumentException("Argument may not be null or empty string");
         this.ssn = ssn;
     }
@@ -91,4 +91,8 @@ public class Employee {
         return testMe == null || testMe.equals("");
     }
 
+    private boolean stringIsValidSsn(String testSsn){
+        return !stringIsNullOrEmpty(testSsn) &&
+               testSsn.matches("\\d{3}-\\d{2}-\\d{4}");
+    }
 }
