@@ -7,7 +7,7 @@ import java.util.Date;
 public class HrDepartment {
     
       private final String CRLF = "\n"; // carriage return line feed
-    
+      
       private final OutputService outService;
       private Employee employee;
       
@@ -38,7 +38,6 @@ public class HrDepartment {
         meetDepartmentStaff();
         reviewDeptPolicies();
         moveIntoCubicle(cubeId);
-        outService.outputReport();
     }
 
     // The following methods may be public or private, depending on whether
@@ -84,4 +83,12 @@ public class HrDepartment {
                 + cubeId + " on " + formatDate(new Date()) + CRLF);
     }
 
+    public void sendEmployeeToHr(Employee sent){
+        employee = sent;
+        outService.clearReport();
+    }
+    
+    public void reportEmployeeHrVisit(){
+        outService.outputReport();
+    }
 }
