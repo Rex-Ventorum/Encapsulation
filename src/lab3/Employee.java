@@ -46,6 +46,7 @@ public class Employee {
     private boolean movedIn;
     private String cubeId;
     private Date orientationDate;
+    private final OrientationProcedures orientationProcedures;
 
     public Employee(String firstName, String lastName, String ssn) {
         // Using setter method guarantees validation will be performed
@@ -53,9 +54,9 @@ public class Employee {
         setFirstName(firstName);
         setLastName(lastName);
         setSsn(ssn);
+        orientationProcedures = new OrientationProcedures(this);
     }
-    
-    
+   
 
     public String getFirstName() {
         return firstName;
@@ -156,6 +157,9 @@ public class Employee {
         this.orientationDate = orientationDate;
     }
     
+    public OrientationProcedures getOrientationProcedures(){
+        return orientationProcedures;
+    }
     
     //----------------------//
     //- VALIDATION HELPERS -//
