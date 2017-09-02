@@ -40,6 +40,8 @@ public class Employee {
     // (all are called 'magic numbers', which are evil). This makes editing
     // these values easier -- one place to do it.
     private final String REQUIRED_MSG = " is mandatory ";
+    private final String CRLF = "\n"; // carriage return line feed
+    private final int MOTIVATION_LEVEL
     
     //Reqired On Constructon
     private String firstName;
@@ -67,6 +69,8 @@ public class Employee {
         setFirstName(firstName);
         setLastName(lastName);
         setSsn(ssn);
+        Random random = new Random(System.nanoTime());
+        MOTIVATION_LEVEL = random.nextInt(3);
     }
     
     //----------------------//
@@ -137,11 +141,21 @@ public class Employee {
     //----------------------//
     
     public boolean doTask(String task){
+        //Attempt Task
         Random random = new Random(System.nanoTime());
-        boolean wasSuccessful = random.nextBoolean();
+        boolean wasSuccessful;
+        int numberOfTrys = 0;
+        do{
+            numberOfTrys++;
+            wasSuccessful = random.nextBoolean();
+        }while(!wasSuccessful && numberOfTrys < MOTIVATION_LEVEL);
+        
+        //Doocument Success
         if(wasSuccessful) taskReport += "Completed ";
         else taskReport += "Failed ";
-        taskReport += task + formatDate(new Date());
+        taskReport += task + formatDate(new Date()) + CRLF;
+        
+        //Retrun sucess
         return wasSuccessful;
     }
     

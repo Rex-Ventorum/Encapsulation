@@ -17,18 +17,17 @@ public class HrDepartment {
       
       private String employeeReport;
       private final ArrayList<Employee> employeeList;
-      private Employee employeeInHr;
       
       public HrDepartment(){
           employeeList = new ArrayList<>();
       }
       
       
-      public void hireNewPersonAsEmployee(String firstName, String lastName, String ssn){
+      public boolean hireNewPersonAsEmployee(String firstName, String lastName, String ssn){
           Employee newEmployee = new Employee(firstName,lastName,ssn);
-          sendEmployeeToHr(newEmployee);
-          doFirstTimeOrientation(getRandomCubeId());
-          employeeList.add(newEmployee);
+          boolean succsefullyHired = doFirstTimeOrientation(newEmployee);
+          if(succsefullyHired) employeeList.add(newEmployee);
+          return succsefullyHired;
       }
 
     private String formatDate(Date date) {
@@ -37,8 +36,13 @@ public class HrDepartment {
     }
     
 
-    public void doFirstTimeOrientation(String cubeId) {
-        employeeInHr.setOrientationDate(new Date());
+    public boolean doFirstTimeOrientation(Employee employee) {
+        employee.setOrientationDate(new Date());
+        
+        
+        
+        
+        
         meetWithHrForBenefitAndSalryInfo();
         meetDepartmentStaff();
         reviewDeptPolicies();
