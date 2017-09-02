@@ -1,9 +1,7 @@
 package lab4;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Random;
 
 /**
  * As with the previous lab you should focus on CLASS Encapsulation and the 
@@ -41,7 +39,6 @@ public class Employee {
     // these values easier -- one place to do it.
     private final String REQUIRED_MSG = " is mandatory ";
     private final String CRLF = "\n"; // carriage return line feed
-    private final int MOTIVATION_LEVEL;
     
     //Reqired On Constructon
     private String firstName;
@@ -69,10 +66,7 @@ public class Employee {
         setFirstName(firstName);
         setLastName(lastName);
         setSsn(ssn);
-        
         taskReport = "";
-        Random random = new Random(System.nanoTime());
-        MOTIVATION_LEVEL = random.nextInt(3)+2;
     }
     
     //----------------------//
@@ -142,23 +136,8 @@ public class Employee {
     //--- ACTION METHODS ---//
     //----------------------//
     
-    public boolean doTask(String task){
-        //Attempt Task
-        Random random = new Random(System.nanoTime());
-        boolean wasSuccessful;
-        int numberOfTrys = 0;
-        do{
-            numberOfTrys++;
-            wasSuccessful = random.nextBoolean();
-        }while(!wasSuccessful && numberOfTrys < MOTIVATION_LEVEL);
-        
-        //Doocument Success
-        if(wasSuccessful) taskReport += "Completed ";
-        else taskReport += "Failed ";
-        taskReport += task + " " + formatDate(new Date()) + CRLF;
-        
-        //Retrun sucess
-        return wasSuccessful;
+    public void doTask(String task){
+       taskReport += "Completed " +  task + " " + formatDate(new Date()) + CRLF;
     }
     
     public String getTaskReport(){
