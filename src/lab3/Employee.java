@@ -91,7 +91,7 @@ public class Employee {
     // and should only be called as part of the larger task of:
     private void meetWithHrForBenefitAndSalryInfo() {
         metWithHr = true;
-        output.simpleOutput(firstName + " " + lastName + " met with Hr on "
+        output.simpleOutput(getFullName() + " met with Hr on "
             + getFormattedDate());
     }
 
@@ -102,7 +102,7 @@ public class Employee {
     // doFirtTimeOrientation()
     private void meetDepartmentStaff() {
         metDeptStaff = true;
-        System.out.println(firstName + " " + lastName + " met with Dept. Staff on "
+        System.out.println(getFullName() + " met with Dept. Staff on "
             + getFormattedDate());
     }
 
@@ -111,7 +111,7 @@ public class Employee {
     // independently from other classes.
     public void reviewDeptPolicies() {
         reviewedDeptPolicies = true;
-        System.out.println(firstName + " " + lastName + " reviewed Dept policies on "
+        System.out.println(getFullName() + " reviewed Dept policies on "
             + getFormattedDate());
     }
 
@@ -121,7 +121,7 @@ public class Employee {
     public void moveIntoCubicle(String cubeId) {
         this.cubeId = cubeId;
         this.movedIn = true;
-        System.out.println(firstName + " " + lastName + " moved into cubicle "
+        System.out.println(getFullName() + " moved into cubicle "
                 + cubeId + " on " + getFormattedDate());
     }
 
@@ -144,6 +144,11 @@ public class Employee {
         return lastName;
     }
 
+    public String getFullName(){
+        return firstName + " " + lastName;
+    }
+    
+    
     public void setLastName(String lastName) {
         if(lastName == null || lastName.isEmpty()) {
             System.out.println("last name is required");
