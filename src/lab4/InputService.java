@@ -3,11 +3,17 @@ package lab4;
 import java.util.Scanner;
 
 public class InputService {
+    private final Scanner scanner;
+    
+    public InputService(){
+        scanner = new Scanner(System.in);
+    }
     
     public String getStringData(){
-        Scanner scanner = new Scanner(System.in);
-        String inData = scanner.nextLine();
+        return scanner.next();
+    }
+    
+    public void closeService(){
         scanner.close();
-        return inData;
     }
 }

@@ -39,6 +39,10 @@ public class Company {
         hr.hireNewPersonAsEmployee(firstName, lastName, ssn);
     }
     
+    public void shutDown(){
+        inService.closeService();
+    }
+    
     public void sendOutHrReport(){
         outService.sendMessage(hr.getHrReport());
         hr.clearReport();

@@ -14,6 +14,7 @@ import java.util.Random;
 public class HrDepartment {
     
       private final String CRLF = "\n"; // carriage return line feed
+      private final String DIVIDE_LINE = "-----------------------------" + CRLF;
       private final Random random;
       
       private String hrReport;
@@ -28,7 +29,12 @@ public class HrDepartment {
       public boolean hireNewPersonAsEmployee(String firstName, String lastName, String ssn){
           Employee newEmployee = new Employee(firstName,lastName,ssn);
           boolean succsefullyHired = doFirstTimeOrientation(newEmployee);
-          if(succsefullyHired) employeeList.add(newEmployee);
+          if(succsefullyHired){
+              employeeList.add(newEmployee);
+              addToReport(newEmployee.getFullName() + " completed orientation and was Hired!");
+          }else{
+              addToReport(newEmployee.getFullName() + " failed orientation and was NOT Hired!");
+          }
           return succsefullyHired;
       }   
 
@@ -78,7 +84,11 @@ public class HrDepartment {
     }
     
     public String getHrReport(){
-        return hrReport;
+        String fullReport = "Human Resources Report:" + CRLF;
+        fullReport += DIVIDE_LINE;
+        fullReport += hrReport;
+        fullReport += DIVIDE_LINE;
+        return fullReport;
     }
     
     private String getRandomCubeId(){

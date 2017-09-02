@@ -41,7 +41,7 @@ public class Employee {
     // these values easier -- one place to do it.
     private final String REQUIRED_MSG = " is mandatory ";
     private final String CRLF = "\n"; // carriage return line feed
-    private final int MOTIVATION_LEVEL
+    private final int MOTIVATION_LEVEL;
     
     //Reqired On Constructon
     private String firstName;
