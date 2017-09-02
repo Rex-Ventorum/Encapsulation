@@ -19,7 +19,7 @@ public class Employee {
     private String lastName;
     private String ssn;
     
-    //Optinal Objects (Can Be null)
+    //Option Objects (can be set later)
     private String cubeId;
     private Date orientationDate;
     
