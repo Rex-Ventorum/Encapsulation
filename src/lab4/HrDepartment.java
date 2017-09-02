@@ -27,53 +27,59 @@ public class HrDepartment {
       }
       
       
-      public boolean hireNewPersonAsEmployee(String firstName, String lastName, String ssn){
+      public void hireNewPersonAsEmployee(String firstName, String lastName, String ssn){
           Employee newEmployee = new Employee(firstName,lastName,ssn);
-          boolean succsefullyHired = doFirstTimeOrientation(newEmployee);
-          if(succsefullyHired){
-              employeeList.add(newEmployee);
-              addToReport(newEmployee.getFullName() + " completed orientation and was Hired!");
-          }else{
-              addToReport(newEmployee.getFullName() + " failed orientation and was NOT Hired!");
-          }
-          return succsefullyHired;
+          doFirstTimeOrientation(newEmployee);
+          employeeList.add(newEmployee);
+          addToReport(newEmployee.getFullName() + " completed orientation and was Hired!");
       }   
 
-    private boolean doFirstTimeOrientation(Employee employee) {
+    private void doFirstTimeOrientation(Employee employee) {
         employee.setOrientationDate(new Date());
         
         //Task 1
-        employee.setMetWithHr(
-                employee.doTask("Meet with Hr For Benefits and Salry Info"));
+        employee.doTask("Meet with Hr For Benefits and Salry Info");
+        employee.setMetWithHr(true);
+       
         //Task 2
-        employee.setMetDeptStaff(
-                employee.doTask("Meet with Dept. Staff"));
+        employee.doTask("Meet with Dept. Staff");
+        employee.setMetDeptStaff(true);
         
         //Task 3
-        employee.setReviewedDeptPolicies(
-                employee.doTask("Review Dept. Polices"));
+        employee.doTask("Review Dept. Polices");
+        employee.setReviewedDeptPolicies(true);
         
         //Task 4
         String cubeId = getRandomCubeId();
-        if(employee.doTask("Move into Cublicle " + cubeId)){
-            employee.setCubeId(cubeId);
-            employee.setMovedIn(true);
+        employee.doTask("Move into Cublicle " + cubeId);
+        employee.setCubeId(cubeId);
+        employee.setMovedIn(true);
+    }
+    
+    public void haveEmployeesReviewNewPolices(){
+        for(Employee employee : employeeList){
+            employee.doTask("Review Dept. Polices");
         }
-        
-        return employee.hasMetWithHr() &&
-               employee.hasMetDeptStaff() &&
-               employee.hasReviewedDeptPolicies() &&
-               employee.hasMovedIn();
+    }
+    
+    public void fillCubical(String cubeId){
+        if(employeeList.isEmpty()){
+            addToReport("No Employee's Found To Fill Cubical With");
+        }else{
+            Employee employee = employeeList.get(random.nextInt(employeeList.size()));
+            employee.doTask("Move To Cublicle "+ cubeId);
+            employee.setCubeId(cubeId);
+            addToReport(employee.getFullName() + " was reassgined to " + cubeId);
+        }
     }
 
     public void deligateTaskToEmployee(String task){
-        Employee employee;
-        int maxAttempts = 5;
-        do{
-            maxAttempts--;
-            employee = employeeList.get(random.nextInt(employeeList.size()));
-        }while(!employee.doTask(task) || maxAttempts <= 0);
-        addToReport("Delegated " + task + " to " + employee.getFullName());
+        if(employeeList.isEmpty()){
+            addToReport("No Employee's Found To Deligate Work.");
+        }else{
+            Employee employee = employeeList.get(random.nextInt(employeeList.size()));
+            addToReport("Delegated " + task + " to " + employee.getFullName());
+        }
     }
     
     private void addToReport(String data){
