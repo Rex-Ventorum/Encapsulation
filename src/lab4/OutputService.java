@@ -12,18 +12,7 @@ package lab4;
  * @version     1.02
  */
 public class OutputService {
-    private String report = "";
-    
-    public void addData(String data) {
-        report += data;
+    public void sendMessage(String msg){
+        System.out.println(msg);
     }
-    
-    public void outputReport() {
-        System.out.println(report);
-    }
-    
-    public void clearReport() {
-        report = "";
-    }
-
 }
