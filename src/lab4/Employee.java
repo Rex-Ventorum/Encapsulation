@@ -70,7 +70,7 @@ public class Employee {
         setLastName(lastName);
         setSsn(ssn);
         Random random = new Random(System.nanoTime());
-        MOTIVATION_LEVEL = random.nextInt(3);
+        MOTIVATION_LEVEL = random.nextInt(3)+2;
     }
     
     //----------------------//

@@ -23,6 +23,7 @@ public class HrDepartment {
       public HrDepartment(){
           employeeList = new ArrayList<>();
           random = new Random(System.nanoTime());
+          hrReport = "";
       }
       
       
