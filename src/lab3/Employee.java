@@ -134,7 +134,7 @@ public class Employee {
     // practice when validation fails. Don't do a System.out.println()
     // to display an error message -- not the job of this class!
     public void setFirstName(String firstName) {
-        if(firstName == null || firstName.isEmpty()) {
+        if(stringIsNullOrEmpty(firstName)) {
             throw new IllegalArgumentException("first name is required");
         }
         this.firstName = firstName;
@@ -150,7 +150,7 @@ public class Employee {
     
     
     public void setLastName(String lastName) {
-        if(lastName == null || lastName.isEmpty()) {
+        if(stringIsNullOrEmpty(lastName)) {
             throw new IllegalArgumentException("last name is required");
         }
         this.lastName = lastName;
@@ -161,9 +161,9 @@ public class Employee {
     }
 
     public void setSsn(String ssn) {
-        if(ssn == null || ssn.length() < 9 || ssn.length() > 11) {
+        if(!stringIsValidSsn(ssn)) {
             throw new IllegalArgumentException("ssn is required and must be "
-                    + "between 9 and 11 characters (if hyphens are used)");
+                    + "\"000-00-0000\" format");
         }
         this.ssn = ssn;
     }
@@ -207,7 +207,7 @@ public class Employee {
 
     
     public void setCubeId(String cubeId) {
-        if(cubeId == null || cubeId.isEmpty()) {
+        if(stringIsNullOrEmpty(cubeId)) {
            throw new IllegalArgumentException("cube id is required");
         }
         this.cubeId = cubeId;
@@ -222,5 +222,19 @@ public class Employee {
             throw new IllegalArgumentException("orientationDate is required");
         }
         this.orientationDate = orientationDate;
+    }
+    
+    
+    //----------------------//
+    //- VALIDATION HELPERS -//
+    //----------------------//
+    
+    private boolean stringIsNullOrEmpty(String testMe){
+        return testMe == null || testMe.isEmpty();
+    }
+
+    private boolean stringIsValidSsn(String testSsn){
+        return !stringIsNullOrEmpty(testSsn) &&
+               testSsn.matches("\\d{3}-\\d{2}-\\d{4}");
     }
 }
