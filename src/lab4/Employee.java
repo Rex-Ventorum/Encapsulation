@@ -38,7 +38,6 @@ public class Employee {
     // (all are called 'magic numbers', which are evil). This makes editing
     // these values easier -- one place to do it.
     private final String REQUIRED_MSG = " is mandatory ";
-    private final String CRLF = "\n"; // carriage return line feed
     
     //Reqired On Constructon
     private String firstName;

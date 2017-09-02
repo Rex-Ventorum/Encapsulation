@@ -11,7 +11,7 @@ package lab4;
  * @author      Jim Lombardo, WCTC Instructor
  * @version     1.02
  */
-public class EmployeeReportService {
+public class OutputService {
     private String report = "";
     
     public void addData(String data) {
