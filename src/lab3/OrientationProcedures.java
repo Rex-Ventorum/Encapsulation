@@ -24,9 +24,9 @@ public class OrientationProcedures {
         of encapsulation where we put frequently used code in one place for for
         easy editing later if necessary.
     */
-    private String getFormattedDate() {
+    private String formatDate(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        return sdf.format(employee.getOrientationDate());
+        return sdf.format(date);
     }
     
     /*
@@ -53,7 +53,7 @@ public class OrientationProcedures {
     private void meetWithHrForBenefitAndSalryInfo() {
         employee.setMetWithHr(true);
         output.simpleOutput(employee.getFullName() + " met with Hr on "
-            + getFormattedDate());
+            + formatDate(employee.getOrientationDate()));
     }
 
     // Assume this must be performed first, and assume that an employee
@@ -64,7 +64,7 @@ public class OrientationProcedures {
     private void meetDepartmentStaff() {
         employee.setMetDeptStaff(true);
         output.simpleOutput(employee.getFullName() + " met with Dept. Staff on "
-            + getFormattedDate());
+            + formatDate(employee.getOrientationDate()));
     }
 
     // Assume this must be performed third. And assume that because department
@@ -73,7 +73,7 @@ public class OrientationProcedures {
     public void reviewDeptPolicies() {
         employee.setReviewedDeptPolicies(true);
         output.simpleOutput(employee.getFullName() + " reviewed Dept policies on "
-            + getFormattedDate());
+            + formatDate(employee.getOrientationDate()));
     }
 
     // Assume this must be performed 4th. And assume that because employees
@@ -83,6 +83,6 @@ public class OrientationProcedures {
         employee.setCubeId(cubeId);
         employee.setMovedIn(true);
         output.simpleOutput(employee.getFullName() + " moved into cubicle "
-                + cubeId + " on " + getFormattedDate());
+                + cubeId + " on " + formatDate(new Date()));
     }
 }
