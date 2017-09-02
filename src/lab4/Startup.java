@@ -15,10 +15,12 @@ public class Startup {
         company.hireNewEmployee("John", "Smith", "555-55-5555");
         company.hireNewEmployee("Sally", "Smith", "777-77-7777");
         company.hireNewEmployee("Randy", "Johnson", "444-44-4444");
-        company.sendOutHrReport();
-        company.delegateTask();
-        company.delegateTask();
-        company.delegateTask();
-        company.sendOutEmployeeReport();
+       
+        company.delegateTask("Meet with Client");
+        company.delegateTask("Fetch Coffie");
+        company.delegateTask("Create Invitory Report");
+        
+        company.viewHrReport();
+        company.viewEmployeeReport();
     }    
 }

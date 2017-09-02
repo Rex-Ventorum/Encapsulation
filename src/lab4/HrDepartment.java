@@ -78,7 +78,7 @@ public class HrDepartment {
         }else{
             Employee employee = employeeList.get(random.nextInt(employeeList.size()));
             employee.doTask(task);
-            addToReport("Delegated " + task + " to " + employee.getFullName());
+            addToReport("Delegated \"" + task + "\" to " + employee.getFullName());
         }
     }
     

@@ -4,6 +4,7 @@ package lab4;
 import java.util.ArrayList;
 
 public class Company {
+    private final String CRLF = "\n"; // carriage return line feed
     
     private final HrDepartment hr;
     private final OutputService outService;
@@ -22,13 +23,13 @@ public class Company {
         outService.sendMessage("Task Delegated!");
     }
         
-    public void sendOutHrReport(){
-        outService.sendMessage(hr.getHrReport());
+    public void viewHrReport(){
+        outService.sendMessage(CRLF + hr.getHrReport());
         hr.clearReport();
     }
     
-    public void sendOutEmployeeReport(){
-        outService.sendMessage(hr.getEmployeeReport());
+    public void viewEmployeeReport(){
+        outService.sendMessage(CRLF + hr.getEmployeeReport());
     }
     
     //----------------------//
