@@ -24,7 +24,10 @@ public class HrDepartment {
           hrReport = "";
       }
       
-      
+      /*
+        Takes in employee info and creates a new employee object then puts that employee through 
+        orientation procedures
+      */
       public void hireNewPersonAsEmployee(String firstName, String lastName, String ssn){
           Employee newEmployee = new Employee(firstName,lastName,ssn);
           doFirstTimeOrientation(newEmployee);
@@ -32,6 +35,10 @@ public class HrDepartment {
           addToReport(newEmployee.getFullName() + " completed orientation and was Hired!");
       }   
 
+      /*
+        Method simulates employee orination where HR would likely ensure the employee
+        completed the tasks delegated to them with a check off (setting flags to true)
+      */
     private void doFirstTimeOrientation(Employee employee) {
         employee.setOrientationDate(new Date());
         
@@ -54,12 +61,19 @@ public class HrDepartment {
         employee.setMovedIn(true);
     }
     
+    /*
+        delegates a "Review Dept. Polices" task to all employees
+    */
     public void haveEmployeesReviewNewPolices(){
         for(Employee employee : employeeList){
             employee.doTask("Review Dept. Polices");
         }
     }
     
+    /*
+        finds a random employee and posts them to the new cublice with
+        "Move to Cublicle" task
+    */
     public void fillCubical(String cubeId){
         if(employeeList.isEmpty()){
             addToReport("No Employee's Found To Fill Cubical With");
@@ -71,7 +85,10 @@ public class HrDepartment {
         }
     }
 
-    public void deligateTaskToEmployee(String task){
+    /*
+        Delegates generic task to an employee
+    */
+    public void delegateTaskToEmployee(String task){
         if(employeeList.isEmpty()){
             addToReport("No Employee's Found To Deligate Work.");
         }else{
@@ -81,14 +98,23 @@ public class HrDepartment {
         }
     }
     
+    /*
+        Adds line of text to hrReport
+    */
     private void addToReport(String data){
         hrReport += data + CRLF;
     }
     
+    /*
+        Clears the hrReport
+    */
     public void clearReport(){
         hrReport = "";
     }
     
+    /*
+        Creates and returns a full hrReport object
+    */
     public String getHrReport(){
         String fullReport = "Human Resources Report:" + CRLF;
         fullReport += DIVIDE_LINE;
@@ -97,18 +123,24 @@ public class HrDepartment {
         return fullReport;
     }
     
+    /*
+        Creates and returns a full Employee Report from Every Employee
+    */
     public String getEmployeeReport(){
         String fullReport = "Employee Task Report: " + CRLF;
         for(Employee employee : employeeList){
             fullReport += DIVIDE_LINE;
             fullReport += employee.getFullName() + ": Cube " + employee.getCubeId() + CRLF;
-            fullReport += employee.getTaskReport() + CRLF;
+            fullReport += employee.getTaskReport();
             employee.clearTaskReport();
         }
         fullReport += DIVIDE_LINE;
         return fullReport;
     }
     
+    /*
+        Creates a random cubeId 
+    */
     private String getRandomCubeId(){
         char letter = (char)(random.nextInt(26) + (int)'A');
         String number = random.nextInt(4) + "" + random.nextInt(9) + "" + random.nextInt(9);

@@ -3,7 +3,8 @@ package lab4;
 
 /*
     Job Of Class
-    Deligate work to subclasses and objects
+    Represent a company object. Would be responable for contacting outside world
+    is source point for all incoming and outgoing data.
 */
 
 public class Company {
@@ -17,12 +18,13 @@ public class Company {
         hr = new HrDepartment();
     }
     
+
     public void hireNewEmployee(String firstName,String lastName, String ssn){
         hr.hireNewPersonAsEmployee(firstName, lastName, ssn);
     }
     
     public void delegateTask(String task){
-        hr.deligateTaskToEmployee(task);
+        hr.delegateTaskToEmployee(task);
     }
         
     public void viewHrReport(){
