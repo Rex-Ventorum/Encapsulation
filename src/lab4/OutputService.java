@@ -1,5 +1,7 @@
 package lab4;
 
+import javax.swing.JOptionPane;
+
 /**
  * This class simulates a simple type of reporting service that produces
  * output. That's it's Single Responsibility. Notice how easy it would be

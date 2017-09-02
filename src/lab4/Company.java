@@ -23,7 +23,6 @@ public class Company {
     
     public void delegateTask(String task){
         hr.deligateTaskToEmployee(task);
-        outService.sendMessage("Task Delegated!");
     }
         
     public void viewHrReport(){
