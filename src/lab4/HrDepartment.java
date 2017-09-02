@@ -7,8 +7,7 @@ import java.util.Random;
 
 /*
     Job Of Class:
-    Keep Record of Employees and tasks that they have completed
-
+    Manage Employee Objects and Delgate Tasks accordingly
 */
 public class HrDepartment {
     

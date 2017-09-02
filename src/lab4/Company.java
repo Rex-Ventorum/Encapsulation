@@ -1,13 +1,16 @@
 
 package lab4;
 
-import java.util.ArrayList;
+/*
+    Job Of Class
+    Deligate work to subclasses and objects
+*/
 
 public class Company {
     private final String CRLF = "\n"; // carriage return line feed
     
-    private final HrDepartment hr;
-    private final OutputService outService;
+    private HrDepartment hr;
+    private OutputService outService;
     
     public Company(){
         outService = new OutputService();
@@ -35,16 +38,20 @@ public class Company {
     //----------------------//
     //--- GETTER METHODS ---//
     //----------------------//
+
+    public HrDepartment getHrDepartment(){return hr;}
+    public OutputService getOutputServices(){return outService;}
     
     //----------------------//
-    //- VALIDATION HELPERS -//
+    //--- SETTER METHODS ---//
     //----------------------//
-    private boolean stringIsNullOrEmpty(String testMe){
-        return testMe == null || testMe.isEmpty();
+    
+    public void setHrDepartment(HrDepartment hr){
+        this.hr = hr;
     }
     
-    private boolean stringIsValidSsn(String testSsn){
-        return !stringIsNullOrEmpty(testSsn) &&
-               testSsn.matches("\\d{3}-\\d{2}-\\d{4}");
+    public void setOutputServices(OutputService outService){
+        this.outService = outService;
     }
+    
 }
