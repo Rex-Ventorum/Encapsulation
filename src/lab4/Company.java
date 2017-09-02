@@ -39,6 +39,11 @@ public class Company {
         hr.hireNewPersonAsEmployee(firstName, lastName, ssn);
     }
     
+    public void sendOutHrReport(){
+        outService.sendMessage(hr.getHrReport());
+        hr.clearReport();
+    }
+    
     private boolean stringIsNullOrEmpty(String testMe){
         return testMe == null || testMe.isEmpty();
     }
