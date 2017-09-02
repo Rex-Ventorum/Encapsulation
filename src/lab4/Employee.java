@@ -55,8 +55,6 @@ public class Employee {
     private boolean reviewedDeptPolicies;
     private boolean movedIn;
 
-  
-
     /*
         Notice we force certain mandatory properties by using a custom
         constructor. But we use the setter method to peform validation.
@@ -109,12 +107,13 @@ public class Employee {
 
     public void setSsn(String ssn) {
         if(!stringIsValidSsn(ssn)) 
-            throw new IllegalArgumentException("Ssn" + REQUIRED_MSG + "and must be \"000-00-0000\" format");
+            throw new IllegalArgumentException("Ssn" + REQUIRED_MSG + "and must be \"###-##-####\" format");
         this.ssn = ssn;
     }
     
     public void setCubeId(String cubeId) {
-        
+        if(!stringIsValidCubeId(cubeId))
+            throw new IllegalArgumentException("Cube Id" + REQUIRED_MSG + "and must be \"A###\" format");
         this.cubeId = cubeId;
     }
     
@@ -144,5 +143,9 @@ public class Employee {
                testSsn.matches("\\d{3}-\\d{2}-\\d{4}");
     }
     
+    private boolean stringIsValidCubeId(String testCubeId){
+        return !stringIsNullOrEmpty(testCubeId) &&
+                testCubeId.matches("[A-Z]\\d{3}");
+    }
+    
 }
-
