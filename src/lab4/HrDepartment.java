@@ -96,7 +96,7 @@ public class HrDepartment {
         String fullReport = "Employee Task Report: " + CRLF;
         for(Employee employee : employeeList){
             fullReport += DIVIDE_LINE;
-            fullReport += employee.getFullName() + ":" + CRLF;
+            fullReport += employee.getFullName() + ": Cube " + employee.getCubeId() + CRLF;
             fullReport += employee.getTaskReport() + CRLF;
             employee.clearTaskReport();
         }

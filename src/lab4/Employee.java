@@ -69,6 +69,8 @@ public class Employee {
         setFirstName(firstName);
         setLastName(lastName);
         setSsn(ssn);
+        
+        taskReport = "";
         Random random = new Random(System.nanoTime());
         MOTIVATION_LEVEL = random.nextInt(3)+2;
     }
@@ -153,7 +155,7 @@ public class Employee {
         //Doocument Success
         if(wasSuccessful) taskReport += "Completed ";
         else taskReport += "Failed ";
-        taskReport += task + formatDate(new Date()) + CRLF;
+        taskReport += task + " " + formatDate(new Date()) + CRLF;
         
         //Retrun sucess
         return wasSuccessful;

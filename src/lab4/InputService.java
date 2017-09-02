@@ -12,7 +12,7 @@ public class InputService {
     public String getStringData(){
         return scanner.next();
     }
-    
+        
     public void closeService(){
         scanner.close();
     }
