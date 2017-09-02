@@ -37,19 +37,12 @@ public class Company {
                 case '4': sendOutEmployeeReport(); break;
                 default: shutDown();
             }
-         
         }while(isOperational());
     }
     
     private void showCompanyMenu(){
         outService.sendMessage("What would you like To Do?");
         outService.sendMessage(MENU_OPTIONS);
-    }
-    
-    private boolean stringIsMenuOption(String testString){
-        char firstChar = testString.charAt(0);
-        return firstChar == '1' || firstChar == '2' ||
-               firstChar == '3' || firstChar == '4';
     }
     
     public void seekNewEmployee(){
