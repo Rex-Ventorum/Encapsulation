@@ -46,7 +46,6 @@ public class Employee {
     private boolean movedIn;
     private String cubeId;
     private Date orientationDate;
-    private OutputService output;
 
     public Employee(String firstName, String lastName, String ssn) {
         // Using setter method guarantees validation will be performed
@@ -54,7 +53,6 @@ public class Employee {
         setFirstName(firstName);
         setLastName(lastName);
         setSsn(ssn);
-        output = new OutputService();
     }
     
     

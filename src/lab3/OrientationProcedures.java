@@ -11,9 +11,11 @@ public class OrientationProcedures {
     
     
     private Employee employee; 
+    private final OutputService output;
     
     public OrientationProcedures(Employee emp){
         employee = emp;
+        output = new OutputService();
     }
     
     /* 
@@ -49,8 +51,8 @@ public class OrientationProcedures {
     // method should not be public. It should only be available to this class
     // and should only be called as part of the larger task of:
     private void meetWithHrForBenefitAndSalryInfo() {
-        metWithHr = true;
-        output.simpleOutput(getFullName() + " met with Hr on "
+        employee.setMetWithHr(true);
+        output.simpleOutput(employee.getFullName() + " met with Hr on "
             + getFormattedDate());
     }
 
@@ -60,8 +62,8 @@ public class OrientationProcedures {
     // and should only be called as part of the larger task of:
     // doFirtTimeOrientation()
     private void meetDepartmentStaff() {
-        metDeptStaff = true;
-        output.simpleOutput(getFullName() + " met with Dept. Staff on "
+        employee.setMetDeptStaff(true);
+        output.simpleOutput(employee.getFullName() + " met with Dept. Staff on "
             + getFormattedDate());
     }
 
@@ -69,8 +71,8 @@ public class OrientationProcedures {
     // policies may change that this method may need to be called 
     // independently from other classes.
     public void reviewDeptPolicies() {
-        reviewedDeptPolicies = true;
-        output.simpleOutput(getFullName() + " reviewed Dept policies on "
+        employee.setReviewedDeptPolicies(true);
+        output.simpleOutput(employee.getFullName() + " reviewed Dept policies on "
             + getFormattedDate());
     }
 
@@ -78,9 +80,9 @@ public class OrientationProcedures {
     // sometimes change office locations that this method may need to be called 
     // independently from other classes.
     public void moveIntoCubicle(String cubeId) {
-        setCubeId(cubeId);
-        this.movedIn = true;
-        output.simpleOutput(getFullName() + " moved into cubicle "
+        employee.setCubeId(cubeId);
+        employee.setMovedIn(true);
+        output.simpleOutput(employee.getFullName() + " moved into cubicle "
                 + cubeId + " on " + getFormattedDate());
     }
 }
