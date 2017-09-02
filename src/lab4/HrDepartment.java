@@ -8,11 +8,10 @@ public class HrDepartment {
     
       private final String CRLF = "\n"; // carriage return line feed
       
-      private final OutputService outService;
+      private String employeeReport;
       private Employee employee;
       
       public HrDepartment(){
-          outService = new OutputService();
       }
       
      /* 
@@ -49,8 +48,8 @@ public class HrDepartment {
     // and should only be called as part of the larger task of:
     private void meetWithHrForBenefitAndSalryInfo() {
         employee.setMetWithHr(true);
-        outService.addData(employee.getFullName() + " met with Hr on "
-            + formatDate(employee.getOrientationDate()) + CRLF);
+        employeeReport = employee.getFullName() + " met with Hr on "
+            + formatDate(employee.getOrientationDate()) + CRLF;
     }
 
     // Assume this must be performed first, and assume that an employee
@@ -60,8 +59,8 @@ public class HrDepartment {
     // doFirtTimeOrientation()
     private void meetDepartmentStaff() {
         employee.setMetDeptStaff(true);
-        outService.addData(employee.getFullName() + " met with Dept. Staff on "
-            + formatDate(employee.getOrientationDate()) + CRLF);
+        employeeReport = employee.getFullName() + " met with Dept. Staff on "
+            + formatDate(employee.getOrientationDate()) + CRLF;
     }
 
     // Assume this must be performed third. And assume that because department
@@ -69,8 +68,8 @@ public class HrDepartment {
     // independently from other classes.
     public void reviewDeptPolicies() {
         employee.setReviewedDeptPolicies(true);
-        outService.addData(employee.getFullName() + " reviewed Dept policies on "
-            + formatDate(new Date()) + CRLF);
+        employeeReport = employee.getFullName() + " reviewed Dept policies on "
+            + formatDate(new Date()) + CRLF;
     }
 
     // Assume this must be performed 4th. And assume that because employees
@@ -79,16 +78,16 @@ public class HrDepartment {
     public void moveIntoCubicle(String cubeId) {
         employee.setCubeId(cubeId);
         employee.setMovedIn(true);
-        outService.addData(employee.getFullName() + " moved into cubicle "
-                + cubeId + " on " + formatDate(new Date()) + CRLF);
+        employeeReport = employee.getFullName() + " moved into cubicle "
+                + cubeId + " on " + formatDate(new Date()) + CRLF;
     }
 
     public void sendEmployeeToHr(Employee sent){
         employee = sent;
-        outService.clearReport();
+        employeeReport = "";
     }
     
-    public void reportEmployeeHrVisit(){
-        outService.outputReport();
+    public String getEmployeeReport(){
+        return employeeReport;
     }
 }
