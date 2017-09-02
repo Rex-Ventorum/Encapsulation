@@ -14,12 +14,14 @@ import java.util.Random;
 public class HrDepartment {
     
       private final String CRLF = "\n"; // carriage return line feed
+      private final Random random;
       
-      private String employeeReport;
+      private String hrReport;
       private final ArrayList<Employee> employeeList;
       
       public HrDepartment(){
           employeeList = new ArrayList<>();
+          random = new Random(System.nanoTime());
       }
       
       
@@ -28,13 +30,7 @@ public class HrDepartment {
           boolean succsefullyHired = doFirstTimeOrientation(newEmployee);
           if(succsefullyHired) employeeList.add(newEmployee);
           return succsefullyHired;
-      }
-
-    private String formatDate(Date date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        return sdf.format(date);
-    }
-    
+      }   
 
     private boolean doFirstTimeOrientation(Employee employee) {
         employee.setOrientationDate(new Date());
@@ -63,24 +59,29 @@ public class HrDepartment {
                employee.hasMovedIn();
     }
 
-    public void moveIntoCubicle(String cubeId) {
-        employeeInHr.setCubeId(cubeId);
-        employeeInHr.setMovedIn(true);
-        employeeReport = employeeInHr.getFullName() + " moved into cubicle "
-                + cubeId + " on " + formatDate(new Date()) + CRLF;
-    }
-
-    public void sendEmployeeToHr(Employee sent){
-        employeeInHr = sent;
-        employeeReport = "";
+    public void deligateTaskToEmployee(String task){
+        Employee employee;
+        int maxAttempts = 5;
+        do{
+            maxAttempts--;
+            employee = employeeList.get(random.nextInt(employeeList.size()));
+        }while(!employee.doTask(task) || maxAttempts <= 0);
+        addToReport("Delegated " + task + " to " + employee.getFullName());
     }
     
-    public String getEmployeeReport(){
-        return employeeReport;
+    private void addToReport(String data){
+        hrReport += data + CRLF;
+    }
+    
+    public void clearReport(){
+        hrReport = "";
+    }
+    
+    public String getHrReport(){
+        return hrReport;
     }
     
     private String getRandomCubeId(){
-        Random random = new Random(System.nanoTime());
         char letter = (char)(random.nextInt(26) + (int)'A');
         String number = random.nextInt(4) + "" + random.nextInt(9) + "" + random.nextInt(9);
         return letter+number;
