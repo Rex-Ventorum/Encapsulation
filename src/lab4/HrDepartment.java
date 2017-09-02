@@ -92,6 +92,18 @@ public class HrDepartment {
         return fullReport;
     }
     
+    public String getEmployeeReport(){
+        String fullReport = "Employee Task Report: " + CRLF;
+        for(Employee employee : employeeList){
+            fullReport += DIVIDE_LINE;
+            fullReport += employee.getFullName() + ":" + CRLF;
+            fullReport += employee.getTaskReport() + CRLF;
+            employee.clearTaskReport();
+        }
+        fullReport += DIVIDE_LINE;
+        return fullReport;
+    }
+    
     private String getRandomCubeId(){
         char letter = (char)(random.nextInt(26) + (int)'A');
         String number = random.nextInt(4) + "" + random.nextInt(9) + "" + random.nextInt(9);
