@@ -36,35 +36,31 @@ public class HrDepartment {
     }
     
 
-    public boolean doFirstTimeOrientation(Employee employee) {
+    private boolean doFirstTimeOrientation(Employee employee) {
         employee.setOrientationDate(new Date());
         
+        //Task 1
+        employee.setMetWithHr(
+                employee.doTask("Meet with Hr For Benefits and Salry Info"));
+        //Task 2
+        employee.setMetDeptStaff(
+                employee.doTask("Meet with Dept. Staff"));
         
+        //Task 3
+        employee.setReviewedDeptPolicies(
+                employee.doTask("Review Dept. Polices"));
         
+        //Task 4
+        String cubeId = getRandomCubeId();
+        if(employee.doTask("Move into Cublicle " + cubeId)){
+            employee.setCubeId(cubeId);
+            employee.setMovedIn(true);
+        }
         
-        
-        meetWithHrForBenefitAndSalryInfo();
-        meetDepartmentStaff();
-        reviewDeptPolicies();
-        moveIntoCubicle(cubeId);
-    }
-
-    private void meetWithHrForBenefitAndSalryInfo() {
-        employeeInHr.setMetWithHr(true);
-        employeeReport = employeeInHr.getFullName() + " met with Hr on "
-            + formatDate(employeeInHr.getOrientationDate()) + CRLF;
-    }
-
-    private void meetDepartmentStaff() {
-        employeeInHr.setMetDeptStaff(true);
-        employeeReport = employeeInHr.getFullName() + " met with Dept. Staff on "
-            + formatDate(employeeInHr.getOrientationDate()) + CRLF;
-    }
-
-    public void reviewDeptPolicies() {
-        employeeInHr.setReviewedDeptPolicies(true);
-        employeeReport = employeeInHr.getFullName() + " reviewed Dept policies on "
-            + formatDate(new Date()) + CRLF;
+        return employee.hasMetWithHr() &&
+               employee.hasMetDeptStaff() &&
+               employee.hasReviewedDeptPolicies() &&
+               employee.hasMovedIn();
     }
 
     public void moveIntoCubicle(String cubeId) {
