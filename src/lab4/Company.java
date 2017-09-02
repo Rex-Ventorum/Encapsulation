@@ -5,15 +5,6 @@ import java.util.ArrayList;
 
 public class Company {
     
-    private final String CRLF = "\n"; // carriage return line feed
-    
-    private final String MENU_OPTIONS = 
-            "(1) - Hire New Employee" + CRLF +
-            "(2) - Deligate Task" + CRLF + 
-            "(3) - View Human Resources Report" + CRLF + 
-            "(4) - View Employee Task Report" + CRLF +
-            "ANY - Exit"; 
-    
     private final HrDepartment hr;
     private final OutputService outService;
     private final InputService inService;
@@ -26,44 +17,7 @@ public class Company {
         isOperational = true;
     }
     
-    public void runCompany(){
-        do{
-            showCompanyMenu();
-            String menuOption = inService.getStringData();
-            switch(menuOption.charAt(0)){
-                case '1': seekNewEmployee(); break;
-                case '2': deligateTask(); break;
-                case '3': sendOutHrReport(); break;
-                case '4': sendOutEmployeeReport(); break;
-                default: shutDown();
-            }
-        }while(isOperational());
-    }
-    
-    private void showCompanyMenu(){
-        outService.sendMessage("What would you like To Do?");
-        outService.sendMessage(MENU_OPTIONS);
-    }
-    
-    public void seekNewEmployee(){
-        String firstName, lastName, ssn;
-        outService.sendMessage("Welcome To We're Hiring Incorperated!" + CRLF);
-        
-        do{
-            outService.sendMessage("Input First Name (Non Null Or Empty): ");
-            firstName = inService.getStringData();
-        }while(stringIsNullOrEmpty(firstName));
-        
-        do{
-            outService.sendMessage("Input Last Name (Non Null Or Empty): ");
-            lastName = inService.getStringData();
-        }while(stringIsNullOrEmpty(lastName));
-        
-        do{
-            outService.sendMessage("Input Ssn (\"###-##-####\" format Only): ");
-            ssn = inService.getStringData();
-        }while(!stringIsValidSsn(ssn));
-        
+    public void hireNewEmployee(String firstName,String lastName, String ssn){
         hr.hireNewPersonAsEmployee(firstName, lastName, ssn);
     }
     

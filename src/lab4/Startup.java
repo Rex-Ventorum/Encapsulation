@@ -12,6 +12,7 @@ package lab4;
 public class Startup {
     public static void main(String[] args) {
         Company company = new Company();
-        company.runCompany();
+        company.seekNewEmployee();
+        
     }    
 }
