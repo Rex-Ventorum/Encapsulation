@@ -1,7 +1,9 @@
 package lab4;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 /**
  * As with the previous lab you should focus on CLASS Encapsulation and the 
@@ -47,6 +49,7 @@ public class Employee {
     //Optinonal Objects (can be set later)
     private String cubeId;
     private Date orientationDate;
+    private String taskReport;
     
     //Flags
     private boolean metWithHr;
@@ -130,6 +133,27 @@ public class Employee {
     public void setMovedIn(boolean movedIn) { this.movedIn = movedIn;}
     
     //----------------------//
+    //--- ACTION METHODS ---//
+    //----------------------//
+    
+    public boolean doTask(String task){
+        Random random = new Random(System.nanoTime());
+        boolean wasSuccessful = random.nextBoolean();
+        if(wasSuccessful) taskReport += "Completed ";
+        else taskReport += "Failed ";
+        taskReport += task + formatDate(new Date());
+        return wasSuccessful;
+    }
+    
+    public String getTaskReport(){
+        return taskReport;
+    }
+    
+    public void clearTaskReport(){
+        taskReport = "";
+    }
+    
+    //----------------------//
     //- VALIDATION HELPERS -//
     //----------------------//
     
@@ -145,6 +169,11 @@ public class Employee {
     private boolean stringIsValidCubeId(String testCubeId){
         return !stringIsNullOrEmpty(testCubeId) &&
                 testCubeId.matches("[A-Z]\\d{3}");
+    }
+    
+    private String formatDate(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
+        return sdf.format(date);
     }
     
 }
