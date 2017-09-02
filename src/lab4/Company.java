@@ -7,31 +7,21 @@ public class Company {
     
     private final HrDepartment hr;
     private final OutputService outService;
-    private final InputService inService;
-    private boolean isOperational;
     
     public Company(){
         outService = new OutputService();
-        inService = new InputService();
         hr = new HrDepartment();
-        isOperational = true;
     }
     
     public void hireNewEmployee(String firstName,String lastName, String ssn){
         hr.hireNewPersonAsEmployee(firstName, lastName, ssn);
     }
     
-    public void deligateTask(){
-        String task = inService.getStringData();
+    public void delegateTask(String task){
         hr.deligateTaskToEmployee(task);
         outService.sendMessage("Task Delegated!");
     }
-    
-    public void shutDown(){
-        inService.closeService();
-        isOperational = false;
-    }
-    
+        
     public void sendOutHrReport(){
         outService.sendMessage(hr.getHrReport());
         hr.clearReport();
@@ -44,8 +34,6 @@ public class Company {
     //----------------------//
     //--- GETTER METHODS ---//
     //----------------------//
-    
-    public boolean isOperational(){return isOperational;}
     
     //----------------------//
     //- VALIDATION HELPERS -//

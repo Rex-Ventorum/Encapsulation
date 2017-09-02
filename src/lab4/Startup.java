@@ -12,7 +12,13 @@ package lab4;
 public class Startup {
     public static void main(String[] args) {
         Company company = new Company();
-        company.seekNewEmployee();
-        
+        company.hireNewEmployee("John", "Smith", "555-55-5555");
+        company.hireNewEmployee("Sally", "Smith", "777-77-7777");
+        company.hireNewEmployee("Randy", "Johnson", "444-44-4444");
+        company.sendOutHrReport();
+        company.delegateTask();
+        company.delegateTask();
+        company.delegateTask();
+        company.sendOutEmployeeReport();
     }    
 }

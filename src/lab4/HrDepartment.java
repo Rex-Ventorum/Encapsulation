@@ -77,6 +77,7 @@ public class HrDepartment {
             addToReport("No Employee's Found To Deligate Work.");
         }else{
             Employee employee = employeeList.get(random.nextInt(employeeList.size()));
+            employee.doTask(task);
             addToReport("Delegated " + task + " to " + employee.getFullName());
         }
     }
